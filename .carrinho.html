@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrinho de Compras</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="img/logo loja vip.jpg" type="image/x-icon">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    #cart-items {
+      background-color: #fff;
+    }
+    th {
+      background-color: #343a40;
+      color: #fff;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+    .btn-danger:hover {
+      background-color: #bd2130;
+      border-color: #bd2130;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar col-12 position-fixed navbar-expand-lg navbar-dark bg-dark" style="z-index: 999;">
+    <div class="container-fluid col-11 m-auto">
+      <a class="navbar-brand" href="#"><img src="img/logo loja vips(1).png" class="d-block w-50" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="vip.style.html">inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=".carrinho.html">carrinho</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              categorias
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="tenis.html">tenis</a></li>
+            </ul>
+      </div>
+    </div>
+  </nav>
+    
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Carrinho de Compras</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Preço</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Adicionar Produto</h5>
+            <div class="form-group">
+              <label for="produto">Nome do Produto:</label>
+              <input type="text" id="produto" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="preco">Preço:</label>
+              <input type="number" id="preco" class="form-control">
+            </div>
+            <button onclick="adicionarItem()" class="btn btn-primary btn-block">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function adicionarItem() {
+      const produto = document.getElementById('produto').value;
+      const preco = document.getElementById('preco').value;
+
+      const cartItems = document.getElementById('cart-items');
+
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${produto}</td>
+        <td>R$ ${preco}</td>
+        <td><button onclick="removerItem(this)" class="btn btn-danger btn-sm">Remover</button></td>
+      `;
+      
+      cartItems.appendChild(newRow);
+    }
+
+    function removerItem(element) {
+      const rowToRemove = element.parentNode.parentNode;
+      rowToRemove.remove();
+    }
+  </script>
+
+</body>
+</html>
